@@ -1,0 +1,15 @@
+This is a plugin for chiliproject for integration with git server
+== Installation
+
+1. Copy the plugin directory into the vendor/plugins directory
+   mkdir folders ssh-public
+
+2. Migrate plugin:
+   rake db:migrate:plugins
+
+3. Restart chiliproject
+
+Installed plugins are listed and can be configured from 'Admin -> Plugins' screen.
+
+
+
