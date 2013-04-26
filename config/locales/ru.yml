@@ -35,6 +35,10 @@ ru:
   label_plugin_git_account_already_isset: У Вас уже существует аккаунт Git
   label_plugin_git_login_already_isset: Выберите другой логин
   label_plugin_git_login_length_error: Длина логина должна составлять от 2 до 100 символов
+  label_plugin_git_work_with_you_account: Управление вашим аккаунтом Git
+  label_plugin_git_account_update_successful: Данные Вашего Git аккаунта обновлены успешно
+  label_plugin_git_account_update_error: При обновлении данных Вашего Git аккаунта произошла ошибка
+  label_plugin_git_button_update: Обновить
   #для страницы создания пользователя git
   label_plugin_git_field_login: Логин в Git
   label_plugin_git_field_firstname: Имя в Git

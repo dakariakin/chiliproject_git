@@ -1,0 +1,18 @@
+<% form_for :git_user, @git_user, :url => {:action => "update"} do |f| %>
+    <%= render 'shared/error_messages' %>
+    <div class="field">
+      <%= f.label :firstname, l(:label_plugin_git_field_firstname) %>
+      <br/>
+      <%= f.text_field :firstname %>
+      <em><%= l(:label_plugin_gittoi_git_fname_desc) %></em>
+    </div>
+    <div class="field">
+      <%= f.label :lastname, l(:label_plugin_git_field_lastname) %>
+      <br/>
+      <%= f.text_field :lastname %>
+      <em><%= l(:label_plugin_gittoi_git_lname_desc) %></em>
+    </div>
+    <div class="actions">
+      <%= f.submit l(:label_plugin_git_button_update) %>
+    </div>
+<% end %>

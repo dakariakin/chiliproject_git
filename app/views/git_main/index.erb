@@ -1,2 +1,18 @@
-hello
-<%= @git_user %>
+<h1><%= l(:label_plugin_git_work_with_you_account) %></h1>
+
+<div class="box">
+  <%= render 'shared/error_messages' %>
+  <h4><%= l(:label_plugin_git_field_login) %> ---- <%= @git_user.login %></h4>
+
+  <div id="data_for_update_git">
+    <h4><%= l(:label_plugin_git_field_firstname) %> ---- <%= @git_user.firstname %></h4>
+    <h4><%= l(:label_plugin_git_field_lastname) %> ---- <%= @git_user.lastname %></h4>
+    <input type="button" value="Изменить имя или фамилию" onclick="load_update()">
+  </div>
+</div>
+
+<%= javascript_tag "function load_update() {
+     $('data_for_update_git').replace(
+        '#{((render :partial => 'for_update').delete "\n").strip}');
+    };"
+%>

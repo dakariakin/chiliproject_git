@@ -1,13 +1,15 @@
 class GitMainController < ApplicationController
   unloadable
 
+  before_filter :require_login, :only => [:index, :new, :create, :update]
+  before_filter :require_admin, :only => :admin
 
   def admin
   end
 
   def index
     if GitUser.exists?(User.current.id)
-      @user = GitUser.find(User.current.id)
+      @git_user = GitUser.find(User.current.id)
     else
       redirect_to :action => 'new'
     end
@@ -31,6 +33,18 @@ class GitMainController < ApplicationController
       redirect_to :action => 'index'
     else
       render 'new'
+    end
+  end
+
+  def update
+    @git_user = GitUser.find(User.current.id)
+
+    if @git_user.update_attributes(params[:git_user])
+      flash[:success] = l(:label_plugin_git_account_update_successful)
+      redirect_to :action => 'index'
+    else
+      flash[:error] = l(:label_plugin_git_account_update_error)
+      render 'index'
     end
   end
 end
