@@ -33,6 +33,6 @@ ru:
   label_plugin_git_account: Учетная запись Git
   label_plugin_git_administration: Администрирование плагина Git
   #для страницы создания пользователя git
-  field_git_login: Логин в Git (Латинские буквы, цифры и знак подчеркивания в нижнем регистре)
-  field_git_firstname: Имя в Git (Латинские символы)
-  field_git_lastname: Фамилия в Git (Латинские символы)
+  field_login: Логин в Git (Латинские буквы, цифры и знак подчеркивания в нижнем регистре)
+  field_firstname: Имя в Git (Латинские символы)
+  field_lastname: Фамилия в Git (Латинские символы)

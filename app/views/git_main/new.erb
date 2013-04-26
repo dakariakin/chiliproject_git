@@ -1,21 +1,21 @@
 <h1><%= l(:label_plugin_git_registration) %></h1>
 
-<% form_for :git_table, @git_user, :url => {:action => "create"} do |f| %>
+<% form_for :git_user, @git_user, :url => {:action => "create"} do |f| %>
     <%= render 'shared/error_messages' %>
     <div class="field">
-      <%= f.label :git_login %>
+      <%= f.label :login %>
       <br/>
-      <%= f.text_field :git_login %>
+      <%= f.text_field :login %>
     </div>
     <div class="field">
-      <%= f.label :git_firstname %>
+      <%= f.label :firstname %>
       <br/>
-      <%= f.text_field :git_firstname %>
+      <%= f.text_field :firstname %>
     </div>
     <div class="field">
-      <%= f.label :git_lastname %>
+      <%= f.label :lastname %>
       <br/>
-      <%= f.password_field :git_lastname %>
+      <%= f.text_field :lastname %>
     </div>
     <div class="actions">
       <%= f.submit l(:label_plugin_git_button_create) %>

@@ -6,19 +6,20 @@ class GitMainController < ApplicationController
   end
 
   def index
-    if GitTable.exists?(User.current.id)
-      @user = GitTable.find(User.current.id)
+    if GitUser.exists?(User.current.id)
+      @user = GitUser.find(User.current.id)
     else
       redirect_to :action => 'new'
     end
   end
 
   def new
-    @git_user = GitTable.new
+    @git_user = GitUser.new
   end
 
   def create
-    @git_user = GitTable.new(params[:git_user])
+    @git_user = GitUser.new(params[:git_user])
+    @git_user.blocked = 'F'
     if @git_user.save
       flash[:success] = l(:label_plugin_git_reg_success)
       redirect_to :action => 'index'
