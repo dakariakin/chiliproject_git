@@ -1,0 +1,13 @@
+<br><br>
+
+<h2><%= l(:label_plugin_gittoi_download_ssh_keys) %></h2>
+<% form_tag '/git_main/upload_key', :multipart => true do %>
+    <div class="box">
+      <label for="ssh_public"><%= l(:label_plugin_git_public_key) %></label>
+      <%= file_field_tag 'ssh_public' %>
+      <br/>
+      <em><%= l(:label_plugin_git_for_registration) %></em>
+    </div>
+    <input type="hidden" name="git_action" value="ssh"/>
+    <%= submit_tag l(:label_plugin_git_button_download) %>
+<% end %>
