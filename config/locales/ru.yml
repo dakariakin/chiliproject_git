@@ -32,7 +32,13 @@ ru:
   label_plugin_git_namelogin: Git Имя
   label_plugin_git_account: Учетная запись Git
   label_plugin_git_administration: Администрирование плагина Git
+  label_plugin_git_account_already_isset: У Вас уже существует аккаунт Git
+  label_plugin_git_login_already_isset: Выберите другой логин
+  label_plugin_git_login_length_error: Длина логина должна составлять от 2 до 100 символов
   #для страницы создания пользователя git
-  field_login: Логин в Git (Латинские буквы, цифры и знак подчеркивания в нижнем регистре)
-  field_firstname: Имя в Git (Латинские символы)
-  field_lastname: Фамилия в Git (Латинские символы)
+  label_plugin_git_field_login: Логин в Git
+  label_plugin_git_field_firstname: Имя в Git
+  label_plugin_git_field_lastname: Фамилия в Git
+  label_plugin_gittoi_git_login_desc: Латинские буквы, цифры и знак подчеркивания в нижнем регистре
+  label_plugin_gittoi_git_fname_desc: Латинские символы
+  label_plugin_gittoi_git_lname_desc: Латинские символы

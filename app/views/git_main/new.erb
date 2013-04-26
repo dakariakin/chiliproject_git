@@ -1,23 +1,28 @@
 <h1><%= l(:label_plugin_git_registration) %></h1>
 
-<% form_for :git_user, @git_user, :url => {:action => "create"} do |f| %>
-    <%= render 'shared/error_messages' %>
-    <div class="field">
-      <%= f.label :login %>
-      <br/>
-      <%= f.text_field :login %>
-    </div>
-    <div class="field">
-      <%= f.label :firstname %>
-      <br/>
-      <%= f.text_field :firstname %>
-    </div>
-    <div class="field">
-      <%= f.label :lastname %>
-      <br/>
-      <%= f.text_field :lastname %>
-    </div>
-    <div class="actions">
-      <%= f.submit l(:label_plugin_git_button_create) %>
-    </div>
-<% end %>
+<div class="box">
+  <% form_for :git_user, @git_user, :url => {:action => "create"} do |f| %>
+      <%= render 'shared/error_messages' %>
+      <div class="field">
+        <%= f.label :login, l(:label_plugin_git_field_login) %>
+        <br/>
+        <%= f.text_field :login %>
+        <em><%= l(:label_plugin_gittoi_git_login_desc) %></em>
+      </div>
+      <div class="field">
+        <%= f.label :firstname, l(:label_plugin_git_field_firstname) %>
+        <br/>
+        <%= f.text_field :firstname %>
+        <em><%= l(:label_plugin_gittoi_git_fname_desc) %></em>
+      </div>
+      <div class="field">
+        <%= f.label :lastname, l(:label_plugin_git_field_lastname) %>
+        <br/>
+        <%= f.text_field :lastname %>
+        <em><%= l(:label_plugin_gittoi_git_lname_desc) %></em>
+      </div>
+      <div class="actions">
+        <%= f.submit l(:label_plugin_git_button_create) %>
+      </div>
+  <% end %>
+</div>
