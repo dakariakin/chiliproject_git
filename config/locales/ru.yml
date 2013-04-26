@@ -37,3 +37,4 @@ ru:
   label_plugin_git_login: Git Логин
   label_plugin_git_namelogin: Git Имя
   label_plugin_git_account: Учетная запись Git
+  label_plugin_git_administration: Администрирование плагина Git
