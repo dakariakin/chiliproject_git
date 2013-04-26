@@ -1,38 +1,39 @@
-# git.toi plugin
+# git plugin
 ru:
-  label_plugin_gittoi_name: GIT
-  label_plugin_gittoi_admin_settings: Настройки модуля
-  label_plugin_gittoi_users_name: Пользователи GIT
-  label_plugin_gittoi_git_login_desc: Латинские буквы, цифры и знак подчеркивания в нижнем регистре
-  label_plugin_gittoi_git_fname_desc: Латинские символы
-  label_plugin_gittoi_git_sname_desc: Латинские символы
-  label_plugin_gittoi_git_login: GIT Логин
-  label_plugin_gittoi_git_fname: GIT Имя
-  label_plugin_gittoi_git_sname: GIT Фамилия
-  label_plugin_gittoi_git_add: GIT Регистрация
-  label_plugin_gittoi_button_create: Создать пользователя
-  label_plugin_gittoi_public_key: Публичный ключ
-  label_plugin_gittoi_for_registration: Для регистрации на git.toiit.sgu.ru
-  label_plugin_gittoi_for_save_on_server: Для хранения копии ключа в сети
-  label_plugin_gittoi_you_public_key: Ваш загруженный публичный ключ
-  label_plugin_gittoi_download_ssh_keys: Загрузка SSH ключей
-  label_plugin_gittoi_button_download: Загрузить
-  label_plugin_gittoi_settings_file_max_size: Максимальный размер файла ключа (в байтах)
-  label_plugin_gittoi_settings_ssh_public_dir: Директория хранения публичных ключей
-  label_plugin_gittoi_settings_ssh_info_dir: Директория хранения Фамилии и Имени
-  label_plugin_gittoi_settings_ssh_action_dir: Директория хранения файлов действий
-  label_plugin_gittoi_public_key_upload_ok: Публичный ключ загружен!
-  label_plugin_gittoi_public_key_upload: Публичный ключ загружен
-  label_plugin_gittoi_public_key_unupload: Публичный ключ не загружен
-  label_plugin_gittoi_chek_login: Проверьте логин!
-  label_plugin_gittoi_chek_fname: Проверьте имя!
-  label_plugin_gittoi_chek_sname: Проверьте фамилию!
-  label_plugin_gittoi_all_inputs: Заполните все поля!
-  label_plugin_gittoi_big_size_public: Файл публичного ключа больше 2 КБ.
-  label_plugin_gittoi_you_must_select_file: Вы не выбрали ни одного файла!
-  label_plugin_gittoi_reg_success: Вы успешно зарегистрированы в системе контроля версий http://git.toiit.sgu.ru/!
-  label_plugin_gittoi_chek_duallogin: Пользователь с таким логином уже сущесвует!
-  label_plugin_gittoi_git_block: Заблокировать
-  label_plugin_gittoi_git_unblock: Разблокировать
-  label_plugin_gittoi_login: GIT Логин
-  label_plugin_gittoi_namelogin: GIT Имя
+  label_plugin_git_name: Git
+  label_plugin_git_admin_settings: Настройки модуля
+  label_plugin_git_users_name: Пользователи Git
+  label_plugin_git_git_login_desc: Латинские буквы, цифры и знак подчеркивания в нижнем регистре
+  label_plugin_git_git_fname_desc: Латинские символы
+  label_plugin_git_git_sname_desc: Латинские символы
+  label_plugin_git_git_login: Git Логин
+  label_plugin_git_git_fname: Git Имя
+  label_plugin_git_git_sname: Git Фамилия
+  label_plugin_git_git_add: Git Регистрация
+  label_plugin_git_button_create: Создать пользователя
+  label_plugin_git_public_key: Публичный ключ
+  label_plugin_git_for_registration: Для регистрации на git.toiit.sgu.ru
+  label_plugin_git_for_save_on_server: Для хранения копии ключа в сети
+  label_plugin_git_you_public_key: Ваш загруженный публичный ключ
+  label_plugin_git_download_ssh_keys: Загрузка SSH ключей
+  label_plugin_git_button_download: Загрузить
+  label_plugin_git_settings_file_max_size: Максимальный размер файла ключа (в байтах)
+  label_plugin_git_settings_ssh_public_dir: Директория хранения публичных ключей
+  label_plugin_git_settings_ssh_info_dir: Директория хранения Фамилии и Имени
+  label_plugin_git_settings_ssh_action_dir: Директория хранения файлов действий
+  label_plugin_git_public_key_upload_ok: Публичный ключ загружен!
+  label_plugin_git_public_key_upload: Публичный ключ загружен
+  label_plugin_git_public_key_unupload: Публичный ключ не загружен
+  label_plugin_git_chek_login: Проверьте логин!
+  label_plugin_git_chek_fname: Проверьте имя!
+  label_plugin_git_chek_sname: Проверьте фамилию!
+  label_plugin_git_all_inputs: Заполните все поля!
+  label_plugin_git_big_size_public: Файл публичного ключа больше 2 КБ.
+  label_plugin_git_you_must_select_file: Вы не выбрали ни одного файла!
+  label_plugin_git_reg_success: Вы успешно зарегистрированы в системе контроля версий http://git.toiit.sgu.ru/!
+  label_plugin_git_chek_duallogin: Пользователь с таким логином уже сущесвует!
+  label_plugin_git_git_block: Заблокировать
+  label_plugin_git_git_unblock: Разблокировать
+  label_plugin_git_login: Git Логин
+  label_plugin_git_namelogin: Git Имя
+  label_plugin_git_account: Учетная запись Git
