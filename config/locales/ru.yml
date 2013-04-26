@@ -3,13 +3,7 @@ ru:
   label_plugin_git_name: Git
   label_plugin_git_admin_settings: Настройки модуля
   label_plugin_git_users_name: Пользователи Git
-  label_plugin_git_git_login_desc: Латинские буквы, цифры и знак подчеркивания в нижнем регистре
-  label_plugin_git_git_fname_desc: Латинские символы
-  label_plugin_git_git_sname_desc: Латинские символы
-  label_plugin_git_git_login: Git Логин
-  label_plugin_git_git_fname: Git Имя
-  label_plugin_git_git_sname: Git Фамилия
-  label_plugin_git_git_add: Git Регистрация
+  label_plugin_git_registration: Создание пользователя Git
   label_plugin_git_button_create: Создать пользователя
   label_plugin_git_public_key: Публичный ключ
   label_plugin_git_for_registration: Для регистрации на git.toiit.sgu.ru
@@ -38,3 +32,7 @@ ru:
   label_plugin_git_namelogin: Git Имя
   label_plugin_git_account: Учетная запись Git
   label_plugin_git_administration: Администрирование плагина Git
+  #для страницы создания пользователя git
+  field_git_login: Логин в Git (Латинские буквы, цифры и знак подчеркивания в нижнем регистре)
+  field_git_firstname: Имя в Git (Латинские символы)
+  field_git_lastname: Фамилия в Git (Латинские символы)
