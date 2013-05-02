@@ -1,1 +1,22 @@
-<h2>GitMain#admin</h2>
+<table class="list">
+  <tr>
+    <th>
+      <%= l(:label_plugin_git_field_login) %></th>
+    <th>
+      <%= l(:label_plugin_git_field_firstname) %></th>
+    <th>
+      <%= l(:label_plugin_git_field_lastname) %></th>
+    <th>
+      <%= l(:label_plugin_git_field_change_status) %></th>
+  </tr>
+  <% @git_users.each do |user| %>
+      <tr class="user <%= cycle("odd", "even") %>">
+        <td class="username"><%= h(user.login) %></td>
+        <td class="firstname"><%= h(user.firstname) %></td>
+        <td class="lastname"><%= h(user.lastname) %></td>
+        <td>
+          <%= change_status_link(user) %>
+        </td>
+      </tr>
+  <% end %>
+</table>

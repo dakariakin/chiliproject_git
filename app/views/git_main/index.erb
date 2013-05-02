@@ -2,12 +2,26 @@
 
 <div class="box">
   <%= render 'shared/error_messages' %>
-  <h4><%= l(:label_plugin_git_field_login) %> ---- <%= @git_user.login %></h4>
+  <table style="text-align:left">
+    <th><%= l(:label_plugin_git_field_login) %></th>
+    <td><%= @git_user.login %></td>
+  </table>
 
   <div id="data_for_update_git">
-    <h4><%= l(:label_plugin_git_field_firstname) %> ---- <%= @git_user.firstname %></h4>
-    <h4><%= l(:label_plugin_git_field_lastname) %> ---- <%= @git_user.lastname %></h4>
-    <input type="button" value="Изменить имя или фамилию" onclick="load_update()">
+    <table style="text-align:left">
+      <tr>
+        <th><%= l(:label_plugin_git_field_firstname) %></th>
+        <td><%= @git_user.firstname %></td>
+      </tr>
+      <tr>
+        <th><%= l(:label_plugin_git_field_lastname) %></th>
+        <td><%= @git_user.lastname %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="button" value="Изменить имя или фамилию" onclick="load_update()"></td>
+      </tr>
+    </table>
   </div>
 
   <%= render 'load_key' %>

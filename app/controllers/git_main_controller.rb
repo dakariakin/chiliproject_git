@@ -1,10 +1,11 @@
 class GitMainController < ApplicationController
   unloadable
 
-  before_filter :require_login, :only => [:index, :new, :create, :update]
-  before_filter :require_admin, :only => :admin
+  before_filter :require_login, :only => [:index, :new, :create, :update, :upload_key]
+  before_filter :require_admin, :only => [:admin, :update_user]
 
   def admin
+    @git_users = GitUser.find(:all)
   end
 
   def index
@@ -84,5 +85,18 @@ class GitMainController < ApplicationController
       end
     end
     redirect_to :action => 'index', :flash => flash
+  end
+
+  def update_user
+    git_user = GitUser.find(params[:id])
+    if git_user.blocked == 'T'
+      git_user.blocked = 'F'
+    else
+      git_user.blocked = 'T'
+    end
+
+    flash[:success] = l(:label_plugin_git_user_update_success) if git_user.save
+
+    redirect_to :action => 'admin', :flash => flash
   end
 end
