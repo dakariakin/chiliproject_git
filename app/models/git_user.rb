@@ -10,27 +10,30 @@ class GitUser < ActiveRecord::Base
     end
   end
 
-  handle_asynchronously :make, :run_at => Proc.new { 1.second.from_now }
-
-  def block_user(user)
-    @command = "girar-disable #{user.login}"
+  def block
+    @command = "girar-disable #{self.login}"
     self.make
   end
 
-  def unblock_user(user)
-    @command = "girar-enable #{user.login}"
+  def unblock
+    @command = "girar-enable #{self.login}"
     self.make
   end
 
-  def add_user(user, key)
+  def add_to_git(key)
     file_name = "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{user.login}/#{key}"
-    @command = "girar-add #{user.login} #{file_name} #{user.firstname} #{user.lastname}"
+    @command = "girar-add #{self.login} #{file_name} #{self.firstname} #{self.lastname}"
     self.make
   end
 
-  def update_public_key(user, key)
+  def update_public_key(key)
     file_name = "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{user.login}/#{key}"
-    @command = "girar-auth-add #{user.login} #{file_name}"
+    @command = "girar-auth-add #{self.login} #{file_name}"
     self.make
   end
+
+  handle_asynchronously :block, :run_at => Proc.new { 2.second.from_now }
+  handle_asynchronously :unblock, :run_at => Proc.new { 2.second.from_now }
+  handle_asynchronously :add_to_git, :run_at => Proc.new { 2.second.from_now }
+  handle_asynchronously :update_public_key, :run_at => Proc.new { 2.second.from_now }
 end

@@ -41,6 +41,7 @@ ru:
   label_plugin_git_button_update: Обновить
   label_plugin_git_field_change_status: Заблокировать (разблокировать) пользователя
   label_plugin_git_user_update_success: Данные пользователя обновлены
+  label_plugin_git_not_forget_add_public_key: Не забудьте добавить свой публичный ключ (например, id.pub), чтобы иметь возможность пользоваться git сервером
   #для страницы создания пользователя git
   label_plugin_git_field_login: Логин в Git
   label_plugin_git_field_firstname: Имя в Git

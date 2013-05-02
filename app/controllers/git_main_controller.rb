@@ -33,6 +33,7 @@ class GitMainController < ApplicationController
     if @git_user.save
       Dir.mkdir "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{@git_user.login}"
       flash[:success] = l(:label_plugin_git_reg_success)
+      flash[:warning] = l(:label_plugin_git_not_forget_add_public_key)
       redirect_to :action => 'index', :flash => flash
     else
       render 'new'
@@ -59,7 +60,7 @@ class GitMainController < ApplicationController
     else
       original_filename = uploaded_key.original_filename
       if uploaded_key.size < Setting.plugin_chiliproject_git['max_file_ssh_size']
-        file_name = "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{@git_user.login}/#{uploaded_key.original_filename}"
+        file_name = "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{@git_user.login}/#{original_filename}"
         if File.exist? file_name
           i = 0
           while File.exists? "#{file_name}#{i}"
@@ -78,6 +79,12 @@ class GitMainController < ApplicationController
         new_key.file_name = original_filename
         new_key.save
 
+        if uploaded_key.original_filename == original_filename
+          @git_user.delay.add_to_git original_filename
+        else
+          @git_user.delay.update_public_key original_filename
+        end
+
         flash[:success] = l(:label_plugin_git_public_key_upload)
         @user_keys = GitUsersKey.all(:conditions => {:user_id => User.current.id})
       else
@@ -91,8 +98,10 @@ class GitMainController < ApplicationController
     git_user = GitUser.find(params[:id])
     if git_user.blocked == 'T'
       git_user.blocked = 'F'
+      git_user.delay.block
     else
       git_user.blocked = 'T'
+      git_user.delay.unblock
     end
 
     flash[:success] = l(:label_plugin_git_user_update_success) if git_user.save
