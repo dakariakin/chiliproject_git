@@ -22,14 +22,23 @@
         <td><input type="button" value="Изменить имя или фамилию" onclick="load_update()"></td>
       </tr>
     </table>
+    <input type="button" value="Создать новый репозиторий" onclick="create_rep()">
+
+    <div id='for_replace_create_rep'></div>
   </div>
 
   <%= render 'load_key' %>
   <%= render 'user_keys' %>
+  <%= render 'user_rep' %>
 </div>
 
 <%= javascript_tag "function load_update() {
      $('data_for_update_git').replace(
         '#{((render :partial => 'for_update').delete "\n").strip}');
+    };"
+%>
+<%= javascript_tag "function create_rep() {
+     $('for_replace_create_rep').replace(
+        '#{((render :partial => 'for_create_rep').delete "\n").strip}');
     };"
 %>

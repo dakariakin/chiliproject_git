@@ -46,6 +46,10 @@ ru:
   label_plugin_git_field_login: Логин в Git
   label_plugin_git_field_firstname: Имя в Git
   label_plugin_git_field_lastname: Фамилия в Git
-  label_plugin_gittoi_git_login_desc: Латинские буквы, цифры и знак подчеркивания в нижнем регистре
-  label_plugin_gittoi_git_fname_desc: Латинские символы
-  label_plugin_gittoi_git_lname_desc: Латинские символы
+  label_plugin_git_git_login_desc: Латинские буквы, цифры и знак подчеркивания в нижнем регистре
+  label_plugin_git_git_fname_desc: Латинские символы
+  label_plugin_git_git_lname_desc: Латинские символы
+  #работа с репозиториями
+  label_plugin_git_field_new_rep_name: Название
+  label_plugin_git_button_create_new_rep: Создать
+  label_plugin_git_repository_created_successful: Репозиторий создан успешно

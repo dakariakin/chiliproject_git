@@ -1,0 +1,11 @@
+<h2><%= 'Ваши репозитории ' unless @user_rep == [] %></h2>
+<table>
+  <th>Название репозитория</th>
+  <th>Адрес</th>
+  <% @user_rep.each do |rep| %>
+      <tr>
+        <td><%= rep.name %></td>
+        <td><a href="<%= rep.url %>"><%= rep.url %></a></td>
+      </tr>
+  <% end %>
+</table>

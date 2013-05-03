@@ -1,0 +1,12 @@
+<% form_for :git_repositorie, @new_rep, :url => {:action => "create_rep"} do |f| %>
+    <%= render 'shared/error_messages' %>
+    <div class="field">
+      <%= f.label :name, l(:label_plugin_git_field_new_rep_name) %>
+      <br/>
+      <%= f.text_field :name %>
+      <em><%= l(:label_plugin_git_git_login_desc) %></em>
+    </div>
+    <div class="actions">
+      <%= f.submit l(:label_plugin_git_button_create_new_rep) %>
+    </div>
+<% end %>

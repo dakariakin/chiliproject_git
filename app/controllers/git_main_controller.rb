@@ -1,7 +1,7 @@
 class GitMainController < ApplicationController
   unloadable
 
-  before_filter :require_login, :only => [:index, :new, :create, :update, :upload_key]
+  before_filter :require_login, :only => [:index, :new, :create, :update, :upload_key, :create_rep]
   before_filter :require_admin, :only => [:admin, :update_user]
 
   def admin
@@ -12,6 +12,8 @@ class GitMainController < ApplicationController
     if GitUser.exists?(User.current.id)
       @git_user = GitUser.find(User.current.id)
       @user_keys = GitUsersKey.all(:conditions => {:user_id => User.current.id})
+      @new_rep = GitRepositories.new
+      @user_rep = GitRepositories.all(:conditions => {:owner_id => User.current.id})
     else
       redirect_to :action => 'new'
     end
@@ -107,5 +109,17 @@ class GitMainController < ApplicationController
     flash[:success] = l(:label_plugin_git_user_update_success) if git_user.save
 
     redirect_to :action => 'admin', :flash => flash
+  end
+
+  def create_rep
+    @git_user = GitUser.find(User.current.id)
+    @git_rep = GitRepositories.new(params[:git_repositorie])
+    @git_rep.owner_id = User.current.id
+    @git_rep.url = "http://git.toiit.sgu.ru/people/#{@git_user.login}/public/#{@git_rep.name}.git"
+    if @git_rep.save
+      @git_rep.delay.create_for @git_user
+      flash[:success] = l(:label_plugin_git_repository_created_successful)
+      redirect_to :action => 'index', :flash => flash
+    end
   end
 end
