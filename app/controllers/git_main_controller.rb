@@ -77,9 +77,9 @@ class GitMainController < ApplicationController
         end
 
         if replace
-          @git_user.delay.update_public_key @git_user.login
+          @git_user.delay.update_public_key @git_user
         else
-          @git_user.delay.add_to_git @git_user.login
+          @git_user.delay.add_to_git @git_user
         end
 
         flash[:success] = l(:label_plugin_git_public_key_upload)
@@ -94,10 +94,10 @@ class GitMainController < ApplicationController
     git_user = GitUser.find(params[:id])
     if git_user.blocked == 'T'
       git_user.blocked = 'F'
-      git_user.delay.block
+      git_user.delay.block git_user
     else
       git_user.blocked = 'T'
-      git_user.delay.unblock
+      git_user.delay.unblock git_user
     end
 
     flash[:success] = l(:label_plugin_git_user_update_success) if git_user.save
@@ -111,7 +111,7 @@ class GitMainController < ApplicationController
     @git_rep.owner_id = User.current.id
     @git_rep.url = "http://git.toiit.sgu.ru/people/#{@git_user.login}/public/#{@git_rep.name}.git"
     if @git_rep.save
-      @git_rep.delay.create_for @git_user
+      @git_rep.delay.create_for @git_user, @git_rep.name
       flash[:success] = l(:label_plugin_git_repository_created_successful)
       redirect_to :action => 'index', :flash => flash
     end
