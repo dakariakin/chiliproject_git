@@ -11,7 +11,6 @@ class GitMainController < ApplicationController
   def index
     if GitUser.exists?(User.current.id)
       @git_user = GitUser.find(User.current.id)
-      @user_keys = GitUsersKey.all(:conditions => {:user_id => User.current.id})
       @new_rep = GitRepositories.new
       @user_rep = GitRepositories.all(:conditions => {:owner_id => User.current.id})
     else
@@ -33,7 +32,6 @@ class GitMainController < ApplicationController
     @git_user.blocked = 'F'
     @git_user.id = User.current.id
     if @git_user.save
-      Dir.mkdir "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{@git_user.login}"
       flash[:success] = l(:label_plugin_git_reg_success)
       flash[:warning] = l(:label_plugin_git_not_forget_add_public_key)
       redirect_to :action => 'index', :flash => flash
@@ -56,39 +54,35 @@ class GitMainController < ApplicationController
 
   def upload_key
     @git_user = GitUser.find(User.current.id)
+    replace = false
     uploaded_key = params[:ssh_public]
     if uploaded_key.nil?
       flash[:error] = l(:label_plugin_git_you_must_select_file)
     else
-      original_filename = uploaded_key.original_filename
       if uploaded_key.size < Setting.plugin_chiliproject_git['max_file_ssh_size']
-        file_name = "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{@git_user.login}/#{original_filename}"
+        file_name = "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{@git_user.login}.pub"
         if File.exist? file_name
-          i = 0
-          while File.exists? "#{file_name}#{i}"
-            i+=1
-          end
-          file_name += i.to_s
-          original_filename += i.to_s
+          replace = true
         end
 
         File.open("#{file_name}", 'w') do |file|
           file.write(uploaded_key.read)
         end
 
-        new_key = GitUsersKey.new
-        new_key.user_id = User.current.id
-        new_key.file_name = original_filename
-        new_key.save
+        unless replace
+          new_key = GitUsersKey.new
+          new_key.user_id = User.current.id
+          new_key.file_name = @git_user.login
+          new_key.save
+        end
 
-        if uploaded_key.original_filename == original_filename
-          @git_user.delay.add_to_git original_filename
+        if replace
+          @git_user.delay.update_public_key @git_user.login
         else
-          @git_user.delay.update_public_key original_filename
+          @git_user.delay.add_to_git @git_user.login
         end
 
         flash[:success] = l(:label_plugin_git_public_key_upload)
-        @user_keys = GitUsersKey.all(:conditions => {:user_id => User.current.id})
       else
         flash[:error] = l(:label_plugin_git_big_size_public)
       end
