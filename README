@@ -4,7 +4,9 @@ This is a plugin for chiliproject for integration with git server (girar)
 1. Copy the plugin directory into the vendor/plugins directory
    (or add git submodule, if chiliproject in git repository)
 
-   mkdir folder ssh-public on chiliproject ROOT folder
+   run:
+    rake create_ssh_dirs
+   for create folders ssh-public and git-actions
 
 2. Migrate plugin:
    rake db:migrate:plugins
