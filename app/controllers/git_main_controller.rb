@@ -54,7 +54,6 @@ class GitMainController < ApplicationController
 
   def upload_key
     @git_user = GitUser.find(User.current.id)
-    replace = false
     uploaded_key = params[:ssh_public]
     if uploaded_key.nil?
       flash[:error] = l(:label_plugin_git_you_must_select_file)
@@ -62,25 +61,17 @@ class GitMainController < ApplicationController
       if uploaded_key.size < Setting.plugin_chiliproject_git['max_file_ssh_size']
         file_name = "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{@git_user.login}.pub"
         if File.exist? file_name
-          replace = true
+          new_key = GitUsersKey.new
+          new_key.user_id = User.current.id
+          new_key.file_name = "#{@git_user.login}.pub"
+          new_key.save
         end
 
         File.open("#{file_name}", 'w') do |file|
           file.write(uploaded_key.read)
         end
 
-        unless replace
-          new_key = GitUsersKey.new
-          new_key.user_id = User.current.id
-          new_key.file_name = @git_user.login
-          new_key.save
-        end
-
-        if replace
-          @git_user.update_public_key @git_user
-        else
-          @git_user.add_to_git @git_user
-        end
+        @git_user.update_public_key
 
         flash[:success] = l(:label_plugin_git_public_key_upload)
       else
@@ -94,10 +85,10 @@ class GitMainController < ApplicationController
     git_user = GitUser.find(params[:id])
     if git_user.blocked == 'T'
       git_user.blocked = 'F'
-      git_user.block git_user
+      #git_user.block git_user
     else
       git_user.blocked = 'T'
-      git_user.unblock git_user
+      #git_user.unblock git_user
     end
 
     flash[:success] = l(:label_plugin_git_user_update_success) if git_user.save
@@ -111,7 +102,7 @@ class GitMainController < ApplicationController
     @git_rep.owner_id = User.current.id
     @git_rep.url = "http://git.toiit.sgu.ru/people/#{@git_user.login}/public/#{@git_rep.name}.git"
     if @git_rep.save
-      @git_rep.create_for @git_user, @git_rep.name
+      #@git_rep.create_for @git_user, @git_rep.name
       flash[:success] = l(:label_plugin_git_repository_created_successful)
       redirect_to :action => 'index', :flash => flash
     end

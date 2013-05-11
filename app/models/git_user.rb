@@ -6,19 +6,16 @@ class GitUser < ActiveRecord::Base
 
   def make(file)
     unless @command.nil? and file.nil?
-      file_name = Time.new.to_time.to_i.to_s.concat("_#{file}")
-      path = "#{Setting.plugin_chiliproject_git['dir_git_actions']}/#{file_name}"
-      File.open(path, 'w') do |file|
-        file.write(@command)
-      end
+      path = "#{Setting.plugin_chiliproject_git['dir_git_actions']}/#{self.login}.pub"
+      FileUtils.copy_file(file, path)
 
       i = 0
       while i < Setting.plugin_chiliproject_git['time_for_wait'].to_i
         if File.exists? path
-          break
-        else
           sleep 1.second
           i += 1
+        else
+          break
         end
       end
     end
@@ -40,9 +37,8 @@ class GitUser < ActiveRecord::Base
     self.make 'add'
   end
 
-  def update_public_key(git_user)
-    file_name = "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{git_user.login}.pub"
-    @command = "girar-auth-add #{git_user.login} #{file_name}"
-    self.make 'update_key'
+  def update_public_key
+    file_name = "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{self.login}.pub"
+    self.make file_name
   end
 end
