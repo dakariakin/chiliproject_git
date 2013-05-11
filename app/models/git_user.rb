@@ -45,9 +45,4 @@ class GitUser < ActiveRecord::Base
     @command = "girar-auth-add #{git_user.login} #{file_name}"
     self.make 'update_key'
   end
-
-  handle_asynchronously :block, :run_at => Proc.new { 1.second.from_now }
-  handle_asynchronously :unblock, :run_at => Proc.new { 1.second.from_now }
-  handle_asynchronously :add_to_git, :run_at => Proc.new { 1.second.from_now }
-  handle_asynchronously :update_public_key, :run_at => Proc.new { 1.second.from_now }
 end

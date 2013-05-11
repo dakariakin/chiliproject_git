@@ -12,6 +12,4 @@ class GitRepositories < ActiveRecord::Base
     @command = "girar-init-db: /people/#{git_user.login}/packages/#{name}.git"
     self.make
   end
-
-  handle_asynchronously :create_for, :run_at => Proc.new { 1.second.from_now }
 end
