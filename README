@@ -11,16 +11,7 @@ This is a plugin for chiliproject for integration with git server (girar)
 2. Migrate plugin:
    rake db:migrate:plugins
 
-4. Install delayed_jobs:
-    bundle install
-    script/generate delayed_job
-    rake db:migrate
-
 5. Restart chiliproject
-
-6. Run delayed_job
-    RAILS_ENV=production script/delayed_job start
-    RAILS_ENV=production script/delayed_job stop
 
 Installed plugins are listed and can be configured from 'Admin -> Plugins' screen.
 
