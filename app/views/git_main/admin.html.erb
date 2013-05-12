@@ -3,10 +3,6 @@
     <th>
       <%= l(:field_login) %></th>
     <th>
-      <%= l(:field_firstname) %></th>
-    <th>
-      <%= l(:field_lastname) %></th>
-    <th>
       <%= l(:label_plugin_git_field_login) %></th>
     <th>
       <%= l(:label_plugin_git_field_firstname) %></th>
@@ -17,9 +13,7 @@
   </tr>
   <% @git_users.each do |user| %>
       <tr class="user <%= cycle("odd", "even") %>">
-        <td class="username"><%= avatar(user.user, :size => "14") %><%= user.login %></td>
-        <td class="firstname"><%= h(user.user.firstname) %></td>
-        <td class="lastname"><%= h(user.user.lastname) %></td>
+        <td class="login"><%= avatar(user.user, :size => "14") %><%= user.login %></td>
         <td class="username"><%= h(user.login) %></td>
         <td class="firstname"><%= h(user.firstname) %></td>
         <td class="lastname"><%= h(user.lastname) %></td>
