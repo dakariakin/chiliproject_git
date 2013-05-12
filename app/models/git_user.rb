@@ -13,7 +13,7 @@ class GitUser < ActiveRecord::Base
       i = 0
       while i < Setting.plugin_chiliproject_git['time_for_wait'].to_i
         if File.exists? path
-          sleep 1.second
+          sleep (1.seconds)
           i += 1
         else
           break
