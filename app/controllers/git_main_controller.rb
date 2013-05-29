@@ -59,11 +59,11 @@ class GitMainController < ApplicationController
       flash[:error] = l(:label_plugin_git_you_must_select_file)
     else
       if uploaded_key.size < Setting.plugin_chiliproject_git['max_file_ssh_size']
-        file_name = "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{@git_user.login}.pub"
+        file_name = "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{@git_user.login}"
         if File.exist? file_name
           new_key = GitUsersKey.new
           new_key.user_id = User.current.id
-          new_key.file_name = "#{@git_user.login}.pub"
+          new_key.file_name = "#{@git_user.login}"
           new_key.save
         end
 

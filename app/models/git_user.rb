@@ -7,13 +7,13 @@ class GitUser < ActiveRecord::Base
 
   def make(file)
     unless @command.nil? and file.nil?
-      path = "#{Setting.plugin_chiliproject_git['dir_git_actions']}/#{self.login}.pub"
+      path = "#{Setting.plugin_chiliproject_git['dir_git_actions']}/#{self.login}"
       FileUtils.copy_file(file, path)
 
       i = 0
       while i < Setting.plugin_chiliproject_git['time_for_wait'].to_i
         if File.exists? path
-          sleep (1.seconds)
+          sleep (1.seconds.to_i)
           i += 1
         else
           break
@@ -39,7 +39,7 @@ class GitUser < ActiveRecord::Base
   end
 
   def update_public_key
-    file_name = "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{self.login}.pub"
+    file_name = "#{Setting.plugin_chiliproject_git['dir_ssh_public']}/#{self.login}"
     self.make file_name
   end
 end
