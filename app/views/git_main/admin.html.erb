@@ -9,7 +9,17 @@
     <th>
       <%= l(:label_plugin_git_field_lastname) %></th>
     <th>
-      <%= l(:label_plugin_git_field_change_status) %></th>
+      Соответствует на project.toiit.sgu.ru
+    </th>
+    <th>
+      Логин в project.toiit
+    </th>
+    <th>
+      Имя в project.toiit
+    </th>
+    <th>
+      Фамилия в project.toiit
+    </th>
   </tr>
   <% @git_users.each do |user| %>
       <tr class="user <%= cycle("odd", "even") %>">
@@ -17,9 +27,10 @@
         <td class="username"><%= h(user.login) %></td>
         <td class="firstname"><%= h(user.firstname) %></td>
         <td class="lastname"><%= h(user.lastname) %></td>
-        <td>
-          <%= change_status_link(user) %>
-        </td>
+        <td></td>
+        <td class="login"><%= user.user.login %></td>
+        <td class="firstname"><%= user.user.firstname %></td>
+        <td class="lastname"><%= user.user.lastname %></td>
       </tr>
   <% end %>
 </table>
