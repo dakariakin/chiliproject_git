@@ -27,7 +27,7 @@
         <td class="username"><%= h(user.login) %></td>
         <td class="firstname"><%= h(user.firstname) %></td>
         <td class="lastname"><%= h(user.lastname) %></td>
-        <td></td>
+        <td><%= link_to 'Привязать git к другому аккаунту', "/git_main/bind/#{user.id}" %></td>
         <td class="login"><%= user.user.login %></td>
         <td class="firstname"><%= user.user.firstname %></td>
         <td class="lastname"><%= user.user.lastname %></td>

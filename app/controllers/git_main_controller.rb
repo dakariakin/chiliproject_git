@@ -2,7 +2,7 @@ class GitMainController < ApplicationController
   unloadable
 
   before_filter :require_login, :only => [:index, :new, :create, :update, :upload_key, :create_rep]
-  before_filter :require_admin, :only => [:admin, :update_user]
+  before_filter :require_admin, :only => [:admin, :update_user, :bind, :save_bind]
 
   def admin
     @git_users = GitUser.find(:all)
@@ -106,5 +106,35 @@ class GitMainController < ApplicationController
       flash[:success] = l(:label_plugin_git_repository_created_successful)
       redirect_to :action => 'index', :flash => flash
     end
+  end
+
+  def bind
+    if params[:git_id].present?
+      @git_user = GitUser.find params[:git_id]
+      @users = User.where('id != ?', @git_user.id)
+    end
+  end
+
+  def save_bind
+    if params[:act].present?
+      @git_user = GitUser.find params[:git]
+      tmp = GitUser.find params[:new_user]
+      if params[:act] == 'delete'
+        tmp.destroy
+        @git_user.id = params[:new_user]
+      elsif params[:act] == 'bind'
+        id = tmp.id
+        tmp.id = @git_user.id
+        @git_user.destroy
+        @git_user.id = id
+        tmp.save
+      end
+      if @git_user.save
+        flash[:success] = 'Привязка успешно сохранена'
+      else
+        flash[:error] = 'Поменять привязку не получилось'
+      end
+    end
+    redirect_to :action => 'admin', :flash => flash unless flash.nil?
   end
 end

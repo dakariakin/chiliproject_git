@@ -1,0 +1,35 @@
+<table class="list">
+  <tr>
+    <th>Аккаунт git</th>
+    <th>Привязать к</th>
+  </tr>
+  <tr>
+    <td>
+      Логин:
+      <%= @git_user.login %>
+      </br>
+      Имя:
+      <%= @git_user.firstname %>
+      </br>
+      Фамилия:
+      <%= @git_user.lastname %>
+    </td>
+    <td>
+      <form action="/git_main/save_bind" method="post">
+        <input type="hidden" value="<%= @git_user.id%>" name="git">
+        <select name="new_user">
+          <% @users.each do |user| %>
+              <option value="<%= user.id %>">
+                <%= "#{user.login}, #{user.firstname}, #{user.lastname}" %>
+              </option>
+          <% end %>
+        </select>
+        </br>
+        Если у пользователя есть git аккаунт, то что нужно сделать?</br>
+        <input type="radio" name="act" checked="true" value="delete">Удалить
+        <input type="radio" name="act" value="bind">Привязать к <%= @git_user.login %></br>
+        <input type="submit" value="Сохранить привязку">
+      </form>
+    </td>
+  </tr>
+</table>
